@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHub User DTS</string>
+    <string name="content_desc_image_user">Image User</string>
+    <string name="title_share_user">Share User</string>
+    <string name="query_hint">Search users…</string>
+    <string name="message_error_search">User not found</string>
+</resources>
