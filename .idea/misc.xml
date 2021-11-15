@@ -3,11 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/drawable/bg_shimmer_diamon.xml" value="0.2203125" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/drawable/bg_shimmer_diamond.xml" value="0.2203125" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/drawable/bg_shimmer_rectangle.xml" value="0.2203125" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/activity_detail_user.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/activity_list_user.xml" value="0.22" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/content_header_detail_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/fragment_follow.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/item_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/shimmer_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/shimmer_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/shimmer_search.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/layout/view_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS - 2/app/src/main/res/menu/menu_detail_user.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS/app/src/main/res/layout/acitivity_detail_user.xml" value="0.16203703703703703" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS/app/src/main/res/layout/activity_list_user.xml" value="0.20416666666666666" />
         <entry key="..\:/DATA-DEDA/android/dts/GitHubUserDTS/app/src/main/res/layout/activity_main.xml" value="0.17222222222222222" />

@@ -8,9 +8,7 @@ import com.adasoraninda.githubuserdts.data.domain.User
 import com.adasoraninda.githubuserdts.databinding.ItemUserBinding
 import com.bumptech.glide.Glide
 
-class ListUserAdapter(
-    private val itemClickListener: (username: String) -> Unit
-) : RecyclerView.Adapter<ListUserAdapter.UserViewHolder>() {
+class ListUserAdapter : RecyclerView.Adapter<ListUserAdapter.UserViewHolder>() {
 
     var users = listOf<User>()
         @SuppressLint("NotifyDataSetChanged")
@@ -18,6 +16,8 @@ class ListUserAdapter(
             field = value
             notifyDataSetChanged()
         }
+
+    private var itemClickListener: ((username: String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,9 +33,13 @@ class ListUserAdapter(
         return users.size
     }
 
+    fun setItemOnClickListener(itemClickListener: ((username: String) -> Unit)?) {
+        this.itemClickListener = itemClickListener
+    }
+
     inner class UserViewHolder(
         private val binding: ItemUserBinding,
-        private val itemClickListener: (username: String) -> Unit
+        private val itemClickListener: ((username: String) -> Unit)?
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(data: User) {
@@ -45,7 +49,7 @@ class ListUserAdapter(
                 .load(data.photo)
                 .into(binding.imageUser)
 
-            binding.root.setOnClickListener { itemClickListener(data.username) }
+            binding.root.setOnClickListener { itemClickListener?.invoke(data.username) }
         }
 
     }

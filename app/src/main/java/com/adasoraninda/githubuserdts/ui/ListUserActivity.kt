@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adasoraninda.githubuserdts.common.ListUserAdapter
 import com.adasoraninda.githubuserdts.databinding.ActivityListUserBinding
+import com.adasoraninda.githubuserdts.navigation.ScreenNavigator
 import com.adasoraninda.githubuserdts.utils.obtainViewModel
-import com.adasoraninda.githubuserdts.utils.showToastMessage
 import com.adasoraninda.githubuserdts.viewmodel.ListUserViewModel
 
 private const val TAG = "ListUserActivity"
@@ -21,7 +21,7 @@ class ListUserActivity : AppCompatActivity() {
     private var _binding: ActivityListUserBinding? = null
     private val binding get() = _binding
 
-    private val listUserAdapter by lazy { ListUserAdapter(this::navigateToDetailUser) }
+    private val listUserAdapter by lazy { ListUserAdapter() }
 
     private lateinit var viewModel: ListUserViewModel
 
@@ -39,10 +39,20 @@ class ListUserActivity : AppCompatActivity() {
         observeViewModel()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     private fun observeViewModel() {
         viewModel.users.observe(this) {
             Log.d(TAG, "$it")
             listUserAdapter.users = it
+        }
+
+        viewModel.username.observe(this) { event ->
+            val result = event.getContent()
+            result?.let { navigateToDetailUser(it) }
         }
 
         viewModel.error.observe(this) {
@@ -55,6 +65,7 @@ class ListUserActivity : AppCompatActivity() {
 
         viewModel.refresh.observe(this) {
             binding?.swipeRefresh?.isRefreshing = it
+            binding?.layoutShimmer?.root?.isVisible = it
         }
     }
 
@@ -80,28 +91,30 @@ class ListUserActivity : AppCompatActivity() {
     }
 
     private fun initListUsers() {
-        binding?.layoutList?.listUsers?.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding?.layoutList?.listUsers?.adapter = listUserAdapter
-        binding?.layoutList?.listUsers?.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                RecyclerView.VERTICAL
+        binding?.layoutList?.listUsers?.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = listUserAdapter.apply {
+                setItemOnClickListener { username ->
+                    viewModel.onItemClick(username)
+                }
+            }
+            setHasFixedSize(true)
+            addItemDecoration(
+                DividerItemDecoration(
+                    context,
+                    RecyclerView.VERTICAL
+                )
             )
+        }
+    }
+
+    private fun navigateToDetailUser(username: String?) {
+        val bundle = Bundle().apply { putString(DetailUserActivity.EXTRA_USERNAME, username) }
+        ScreenNavigator.navigate(
+            context = this,
+            destination = DetailUserActivity::class.java,
+            bundle = bundle
         )
-        binding?.layoutList?.listUsers?.setHasFixedSize(true)
-    }
-
-    private fun navigateToDetailUser(user: String?) {
-        showToastMessage("$user")
-//        val intent = Intent(this, DetailUserActivity::class.java)
-//        intent.putExtra(DetailUserActivity.EXTRA_USER_NAME, user)
-//        startActivity(intent)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
 }

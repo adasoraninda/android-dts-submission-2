@@ -1,4 +1,4 @@
-package com.adasoraninda.githubuserdts.service
+package com.adasoraninda.githubuserdts.network
 
 import com.adasoraninda.githubuserdts.BuildConfig
 import okhttp3.OkHttpClient
